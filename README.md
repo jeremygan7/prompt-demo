@@ -56,5 +56,8 @@ POST /evaluate
 ```
 
 
+Disclaimer: This demo uses a lightweight SQLite database for simplicity and portability. It can be easily adapted to use PostgreSQL, MySQL, or any other supported database by updating the Prisma configuration.
+
+
 
 
