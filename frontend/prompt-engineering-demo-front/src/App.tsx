@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 interface EvaluationResponse {
@@ -29,7 +27,7 @@ function App() {
       .map(function (k) { return k.trim(); })
       .filter(function (k) { return k.length > 0; });
 
-    fetch('/evaluate', {
+    fetch('http://localhost:3000/evaluate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, capturedKeywords })
@@ -109,13 +107,52 @@ function App() {
       {error && <p style={{ color: 'red', marginTop: '1rem' }}>Error: {error}</p>}
 
       {result && (
-        <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0f0f0' }}>
+          <div
+          style={{
+            marginTop: '2rem',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            background: '#23272f',
+            color: '#fff',
+            borderRadius: '18px',
+            boxShadow: '0 4px 32px #0007',
+            padding: '2.5rem 1rem',
+            textAlign: 'center',
+          }}
+          >
           <p><strong>{result.message}</strong></p>
           <p><strong>Score:</strong> {result.score}</p>
           <p><strong>Intent:</strong> {result.intent}</p>
         </div>
       )}
+
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '2rem',
+        zIndex: 1000
+      }}>
+        <button
+          style={{
+            padding: '0.4em 1.2em',
+            background: '#1a8cff',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '999px',
+            fontWeight: 'bold',
+            fontSize: '1em',
+            boxShadow: '0 2px 12px #0005',
+            cursor: 'pointer',
+            transition: 'background 0.2s'
+          }}
+          onClick={() => window.open('http://localhost:3000/leads', '_blank')}
+        >
+          View Leads
+        </button>
+      </div>
     </div>
+    
   );
 }
 
