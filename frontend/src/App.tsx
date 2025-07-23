@@ -27,7 +27,7 @@ function App() {
       .map(function (k) { return k.trim(); })
       .filter(function (k) { return k.length > 0; });
 
-    fetch('http://localhost:3000/evaluate', {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/evaluate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, capturedKeywords })
@@ -146,7 +146,7 @@ function App() {
             cursor: 'pointer',
             transition: 'background 0.2s'
           }}
-          onClick={() => window.open('http://localhost:3000/leads', '_blank')}
+          onClick={() => window.open(`${import.meta.env.VITE_BACKEND_URL}/leads`, '_blank')}
         >
           View Leads
         </button>
