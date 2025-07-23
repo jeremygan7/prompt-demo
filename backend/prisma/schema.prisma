@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Intent {
+  High
+  Medium
+  Low
+}
+
+model Lead {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String
+  capturedKeywords String
+  score            Int
+  intent           Intent
+  followedUp       Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+}
